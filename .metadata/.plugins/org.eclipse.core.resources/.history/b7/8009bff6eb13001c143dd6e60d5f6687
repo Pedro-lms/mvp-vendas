@@ -1,7 +1,5 @@
 package com.backend.backend.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,8 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.SaleDTO;
-import com.backend.backend.dto.SaleSuccessDTO;
-import com.backend.backend.dto.SaleSumDTO;
 import com.backend.backend.entities.Sale;
 import com.backend.backend.repositories.SaleRepository;
 import com.backend.backend.repositories.SellerRepository;
@@ -31,13 +27,5 @@ public class SaleService {
 		return result.map(x -> new SaleDTO(x));
 	}
 	
-	@Transactional(readOnly = true)	
-	public List<SaleSumDTO> amountGroupedBySeller() {
-		return repository.amountGroupedBySeller();
-	}
-	
-	@Transactional(readOnly = true)	
-	public List<SaleSuccessDTO> successGroupedBySeller() {
-		return repository.successGroupedBySeller();
-	}
+	public 
 }
