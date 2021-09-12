@@ -1,0 +1,22 @@
+package com.backend.backend.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.backend.backend.dto.SellerDTO;
+import com.backend.backend.entities.Seller;
+import com.backend.backend.repositories.SaleRepository;
+
+@Service
+public class SaleService {
+
+	@Autowired //Injeção automatica e aclopamento fraco
+	private SaleRepository repository;
+	
+	public Page<Object> findAll(Pageable pageable){
+		Page<Seller> result = repository.findAll(pageable);
+		return result.map(x -> new SellerDTO(x)); //O pageable retira a necessidade de puxar a stream porque já é stream
+	}
+}
